@@ -1,0 +1,15 @@
+.tableau{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+table, th, td
+{
+  border: 1px solid var(--app-primary-dark);
+  padding: 5px 10px 5px 10px;
+}
+
+thead
+{
+  background-color: var(--app-bg-light)
+}

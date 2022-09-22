@@ -1,1 +1,28 @@
-<p>page-list-orders works!</p>
+<div class="tableau">
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Client</th>
+        <th>Type de prestation</th>
+        <th>Status</th>
+        <th>Taux journalier HT</th>
+        <th>TVA</th>
+        <th>Nombre de jours</th>
+        <th>Commentaire</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of orders">
+        <td>{{i.id}}</td>
+        <td>{{i.client}}</td>
+        <td>{{i.typePresta}}</td>
+        <td>{{i.state}}</td>
+        <td>{{i.tjmHt}}</td>
+        <td>{{i.tva}}</td>
+        <td>{{i.nbJours}}</td>
+        <td>{{i.comment}}</td>
+      </tr>
+  </tbody>
+  </table>
+</div>
