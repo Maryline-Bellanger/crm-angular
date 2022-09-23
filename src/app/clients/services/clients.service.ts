@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Client } from 'src/app/core/models/client';
 
 @Injectable({
@@ -11,8 +11,14 @@ export class ClientsService {
   private collection$ !: Observable<Client[]>;
 
   constructor(private http: HttpClient) {
-    this.collection = this.http.get<Client[]>('http://localhost:3000/clients');
-   }
+    this.collection = this.http.get<Client[]>('http://localhost:3000/clients').pipe(
+      map((tab) =>{
+        return tab.map((obj) => {
+          return new Client(obj);
+        })
+      })
+   );
+  }
 
    get collection(): Observable<Client[]>{
     return this.collection$;

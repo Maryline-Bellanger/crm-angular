@@ -1,24 +1,23 @@
-<div class="tableau">
-  <table>
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Nom</th>
-        <th>Status</th>
-        <th>Capital total HT</th>
-        <th>TVA</th>
-        <th>Commentaire</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let i of clients">
-        <td>{{i.id}}</td>
-        <td>{{i.name}}</td>
-        <td>{{i.state}}</td>
-        <td>{{i.totalCaHt}}</td>
-        <td>{{i.tva}}</td>
-        <td>{{i.comment}}</td>
-      </tr>
-  </tbody>
-  </table>
-</div>
+<app-template-full-width [title]="title" *ngIf="collection$ | async as collection">
+  <app-table-light [headers]="headers">
+    <tr *ngFor='let item of collection'>
+      <!--  table data cells (td)-->
+      <td>{{item.name}}</td>
+      <td>
+        <!-- ici un menu déroulant -->
+        <select>
+          <option
+          *ngFor="let state of states"
+          [value]="state"
+          [selected]="state === item.state"
+          >{{state}}</option>
+        </select>
+      </td>
+      <td>{{item.totalCaHt}}</td>
+      <td>{{item.tva}}</td>
+      <td>{{item | total :true}}</td>
+      <td>{{item.comment}}</td>
+
+    </tr>
+  </app-table-light>
+</app-template-full-width>

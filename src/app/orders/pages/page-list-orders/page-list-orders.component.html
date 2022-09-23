@@ -1,28 +1,30 @@
-<div class="tableau">
-  <table>
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Client</th>
-        <th>Type de prestation</th>
-        <th>Status</th>
-        <th>Taux journalier HT</th>
-        <th>TVA</th>
-        <th>Nombre de jours</th>
-        <th>Commentaire</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let i of orders">
-        <td>{{i.id}}</td>
-        <td>{{i.client}}</td>
-        <td>{{i.typePresta}}</td>
-        <td>{{i.state}}</td>
-        <td>{{i.tjmHt}}</td>
-        <td>{{i.tva}}</td>
-        <td>{{i.nbJours}}</td>
-        <td>{{i.comment}}</td>
-      </tr>
-  </tbody>
-  </table>
-</div>
+<!-- dans ce composant, on a accès aux commandes -->
+
+<!-- ici on affiche app-template-full-width que si collection retourne true -->
+<app-template-full-width [title]="title" *ngIf="collection$ | async as collection">
+  <app-table-light [headers]="headers">
+    <!-- ici on veut projeter toute la partie <td>  -->
+    <!-- utilisation du ng-content dans app-table-light -->
+    <tr *ngFor='let item of collection'>
+      <!--  table data cells (td)-->
+      <td>{{item.typePresta | uppercase}}</td>
+      <td>{{item.client}}</td>
+      <td>{{item.nbJours}}</td>
+      <td>{{item.tjmHt}}</td>
+      <td>{{item | total}}</td>
+      <td>{{item | total :true}}</td>
+      <td>
+        <!-- ici un menu déroulant -->
+        <select>
+          <option
+          *ngFor="let state of states"
+          [value]="state"
+          [selected]="state === item.state"
+          >{{state}}</option>
+        </select>
+      </td>
+    </tr>
+  </app-table-light>
+</app-template-full-width>
+
+

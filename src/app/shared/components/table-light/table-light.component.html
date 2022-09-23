@@ -1,0 +1,18 @@
+<table class="table">
+  <!-- thead utile pour le référencement -->
+  <thead>
+      <!-- table row (ligne) -->
+      <tr>
+          <!--   table header cells (th) -->
+          <!-- headers = ['item1', 'item2', 'item3'] -->
+          <th scope="col" *ngFor="let item of headers">{{item}}</th>
+      </tr>
+  </thead>
+  <tbody>
+    <!-- tr = row = ligne -->
+    <ng-content></ng-content>
+  </tbody>
+</table>
+
+
+

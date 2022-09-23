@@ -6,5 +6,6 @@ export interface ClientI {
   totalCaHt : number;
   name : string;
   comment : string;
+  totalTTC(): number;
   id : number;
 }
