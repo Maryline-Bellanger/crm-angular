@@ -8,7 +8,7 @@ export class TotalPipe implements PipeTransform {
 
   transform(item: any, tva?: boolean) {
     // value correspond à la valeur passée au pipe total
-    console.log(item, 'item');
+    //console.log(item, 'item');
 
     if(tva){
       return item.totalTTC();

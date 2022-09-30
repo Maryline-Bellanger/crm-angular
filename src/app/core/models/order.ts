@@ -1,6 +1,7 @@
 import { StateOrder } from "../enums/state-order";
 
 export class Order {
+  action !: any;
   tjmHt = 1200;
   nbJours = 1;
   tva = 20;

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
@@ -22,6 +24,7 @@ export class PageListOrdersComponent implements OnInit {
 
   // créer un tableau avec les en-têtes
   public headers: string[] = [
+    'Action',
     'Type',
     'Client',
     'NbJours',
@@ -31,7 +34,10 @@ export class PageListOrdersComponent implements OnInit {
     'Statut',
   ];
 
-  constructor(private ordersService: OrdersService) {
+  constructor(
+    private ordersService: OrdersService,
+    private router: Router,
+    ) {
     // déclencher le getter
     // this.ordersService.collection.subscribe((data) => {
     //   this.collection$ = data;
@@ -45,6 +51,18 @@ export class PageListOrdersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //méthode pour changer le state
+  public changeState(item: Order, event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const state = target.value as StateOrder;
+
+    this.ordersService.changeState(item, state).subscribe(data=>{
+      // modifier item
+      Object.assign(item, data);
+
+    })
+  }
+
   // créer une méthode pour calcuer TotalHT et total TTC
   // public total(val: number, coef: number, tva?: number){
   //   console.log('fonction total')
@@ -53,4 +71,10 @@ export class PageListOrdersComponent implements OnInit {
   //   }
   //   return val * coef;
   // }
+
+  public onEdit(item: Order){
+    console.log(item);
+    this.router.navigate(['orders', 'edit', item.id])
+  }
+  
 }

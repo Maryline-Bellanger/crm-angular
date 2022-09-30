@@ -1,6 +1,7 @@
 import { StateClient } from "../enums/state-client";
 
 export class Client {
+  action !: any;
   tva = 20;
   state = StateClient.ACTIVE;
   totalCaHt !: number;

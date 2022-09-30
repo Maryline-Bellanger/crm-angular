@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StateClient } from 'src/app/core/enums/state-client';
 import { Client } from 'src/app/core/models/client';
@@ -18,6 +19,7 @@ export class PageListClientsComponent implements OnInit {
   public collection$!:  Observable<Client[]>;
 
   public headers: string[] = [
+    'Action',
     'Nom',
     'Statut',
     'Total CA HT',
@@ -26,7 +28,9 @@ export class PageListClientsComponent implements OnInit {
     'Commentaire',
   ]
 
-  constructor(private clientsService: ClientsService) {
+  constructor(
+    private clientsService: ClientsService,
+    private router: Router) {
     // this.clientsService.collection.subscribe((data) => {
     //   this.collection = data;
     //   this.headers;
@@ -40,4 +44,17 @@ export class PageListClientsComponent implements OnInit {
 
   }
 
+  public changeState(item: Client, event: Event){
+    const target = event.target as HTMLSelectElement;
+    const state = target.value as StateClient;
+
+    this.clientsService.changeState(item, state).subscribe(data=>{
+      Object.assign(item, data);
+    })
+
+  }
+  public onEdit(item: Client){
+    console.log(item);
+    this.router.navigate(['clients', 'edit', item.id])
+  }
 }
