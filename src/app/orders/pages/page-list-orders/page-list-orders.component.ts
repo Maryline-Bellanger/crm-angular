@@ -74,7 +74,11 @@ export class PageListOrdersComponent implements OnInit {
 
   public onEdit(item: Order){
     console.log(item);
-    this.router.navigate(['orders', 'edit', item.id])
+    this.router.navigate(['orders', 'edit', item.id]);
   }
-  
+
+  public onDelete(item: Order): void{
+    this.ordersService.delete(item).subscribe();
+  }
+
 }

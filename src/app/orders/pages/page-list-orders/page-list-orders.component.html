@@ -9,7 +9,7 @@
       <!--  table data cells (td)-->
       <td>
           <app-icon-edit (click)="onEdit(item)"></app-icon-edit>
-          <!-- <app-icon-delete class="space"></app-icon-delete> -->
+          <app-icon-delete (click)="onDelete(item)" class="space"></app-icon-delete>
       </td>
       <td>{{item.typePresta | uppercase}}</td>
       <td>{{item.client}}</td>

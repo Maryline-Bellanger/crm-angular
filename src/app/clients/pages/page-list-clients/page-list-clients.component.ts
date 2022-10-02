@@ -55,6 +55,10 @@ export class PageListClientsComponent implements OnInit {
   }
   public onEdit(item: Client){
     console.log(item);
-    this.router.navigate(['clients', 'edit', item.id])
+    this.router.navigate(['clients', 'edit', item.id]);
+  }
+
+  public onDelete(item: Client): void{
+    this.clientsService.delete(item).subscribe();
   }
 }
