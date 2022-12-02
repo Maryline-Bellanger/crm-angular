@@ -18,6 +18,7 @@ export class OrdersService {
 
 
   constructor(private http: HttpClient) {
+    console.log(this.collection, 'refresh constructor')
     this.refreshCollection();
   }
 
@@ -34,6 +35,7 @@ export class OrdersService {
   // getter this.collection
   get collection(): Observable<Order[]>{
     return this.collection$;
+    console.log(this.collection$, "get collection")
   }
 
   // setter this.collection = valeur
@@ -61,6 +63,7 @@ export class OrdersService {
   }
 
   add(item: Order):Observable<any>{
+    console.log(item, "depuis ajouter")
     return this.http.post<Order>(`${this.urlApi}/orders`, item).pipe(
       tap(() => { this.refreshCollection()})
     );
@@ -71,6 +74,7 @@ export class OrdersService {
   }
 
   public delete(item: Order): Observable<any>{
+    console.log(item, "depuis delete")
     return this.http.delete<Order>(`${this.urlApi}/orders/${item.id}`).pipe(
       tap(() => this.refreshCollection())
     );

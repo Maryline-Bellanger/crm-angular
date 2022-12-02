@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+  { path: '', redirectTo: '/orders', pathMatch: 'full' },
 
   {
     path: '',
@@ -25,7 +25,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule),
   },
-
 ];
 
 @NgModule({

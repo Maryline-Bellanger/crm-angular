@@ -25,7 +25,7 @@ export class PageListClientsComponent implements OnInit {
     'Total CA HT',
     'TVA',
     'Total CA TTC',
-    'Commentaire',
+    'Commentaires',
   ]
 
   constructor(

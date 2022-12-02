@@ -78,4 +78,5 @@ export class ClientsService {
     return this.http.delete<Client>(`${this.urlApi}/clients/${item.id}`).pipe(
       tap(()=> this.refreshCollection())
     );
-}}
+  }
+}

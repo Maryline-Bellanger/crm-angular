@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UiComponent implements OnInit {
 
-  public open: boolean = true;
+  public open: boolean = false;
 
   constructor() { }
 
@@ -19,7 +19,7 @@ export class UiComponent implements OnInit {
     //faire alterner open de true à false
 
     this.open = !this.open;
-    console.log(this.open);
+
   }
 
 } // ne rien écrire après cette ligne
